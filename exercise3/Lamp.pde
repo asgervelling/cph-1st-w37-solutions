@@ -10,23 +10,31 @@ class Lamp {
     this.x = xPos;
     this.y = yPos;
   }
-  
+
   public void render() {
     drawLightSocket();
-    glow();
+    if (turnedOn) {
+      glow();
+    }
   }
 
   public void drawLightSocket() {
     fillFromString("grey");
-    
+
     ellipseMode(CENTER);
     ellipse(x, y, socketDiameter, socketDiameter);
-    // ellipse(width / 2, 400, lightSocketDiameter, lightSocketDiameter);
-    // ellipse(width / 2, 650, lightSocketDiameter, lightSocketDiameter);
   }
 
   public void glow() {
     fillFromString(lightColor);
     ellipse(x, y, lampDiameter, lampDiameter);
+  }
+
+  public void turnOn() {
+    turnedOn = true;
+  }
+
+  public void turnOff() {
+    turnedOn = false;
   }
 }

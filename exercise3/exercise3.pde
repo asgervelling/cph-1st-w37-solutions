@@ -7,7 +7,7 @@
 import java.util.HashMap;
 
 HashMap<String, int[]> colors = getColorHashmap();
-boolean[] lightsTurnedOn = {true, false, false}; // red, yellow, green
+int clock = 0;
 
 Lamp redLamp = new Lamp("red", 200, 150);
 Lamp yellowLamp = new Lamp("yellow", 200, 400);
@@ -18,6 +18,7 @@ void setup() {
 }
 
 void draw() {
+  controlTrafficLight();
   drawTrafficLight();
 }
 
@@ -28,9 +29,28 @@ void drawTrafficLight() {
   redLamp.render();
   yellowLamp.render();
   greenLamp.render();
+}
+
+void controlTrafficLight() {
+  int interval = 200;
+  clock++;
+  if (clock < interval) {
+    redLamp.turnOn();
+    yellowLamp.turnOff();
+    greenLamp.turnOff();
+  } else if (clock < interval * 2) {
+    redLamp.turnOn();
+    yellowLamp.turnOn();
+    greenLamp.turnOff();
+  } else if (clock < interval * 3) {
+    redLamp.turnOff();
+    yellowLamp.turnOff();
+    greenLamp.turnOn();
+  } else {
+    clock = 0;
+  }
   
-  
-  
+  println(clock);
 }
 
 void fillFromString(String colorName) {
