@@ -49,8 +49,6 @@ void controlTrafficLight() {
   } else {
     clock = 0;
   }
-  
-  println(clock);
 }
 
 void fillFromString(String colorName) {
